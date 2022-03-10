@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.dgodyna.ijjettemplate.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.dgodyna.ijjettemplate.MyBundle
 
 class MyApplicationService {
 
