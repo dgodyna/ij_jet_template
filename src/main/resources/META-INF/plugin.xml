@@ -9,6 +9,11 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.dgodyna.ijjettemplate.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.dgodyna.ijjettemplate.services.MyProjectService"/>
+        <fileType name="Monkey File"
+                  implementationClass="com.github.dgodyna.ijjettemplate.JetFileType"
+                  fieldName="INSTANCE"
+                  language="Jet Template"
+                  extensions="jet"/>
     </extensions>
 
     <applicationListeners>
