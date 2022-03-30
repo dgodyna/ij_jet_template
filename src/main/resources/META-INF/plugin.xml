@@ -15,5 +15,9 @@
         <lang.parserDefinition language="Jet Template"
                                implementationClass="com.github.dgodyna.ijjettemplate.JetParserDefinition"/>
 
+        <lang.syntaxHighlighterFactory
+                language="Jet Template"
+                implementationClass="com.github.dgodyna.ijjettemplate.JetSyntaxHighlighterFactory"/>
+
     </extensions>
 </idea-plugin>
