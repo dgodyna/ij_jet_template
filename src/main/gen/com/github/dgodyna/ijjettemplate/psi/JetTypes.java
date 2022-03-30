@@ -8,10 +8,12 @@ import com.github.dgodyna.ijjettemplate.psi.impl.*;
 
 public interface JetTypes {
 
+  IElementType IMPORT_STATEMENT = new JetElementType("IMPORT_STATEMENT");
   IElementType PROPERTY = new JetElementType("PROPERTY");
 
   IElementType COMMENT = new JetTokenType("COMMENT");
   IElementType CRLF = new JetTokenType("CRLF");
+  IElementType IMPORT = new JetTokenType("IMPORT");
   IElementType KEY = new JetTokenType("KEY");
   IElementType SEPARATOR = new JetTokenType("SEPARATOR");
   IElementType VALUE = new JetTokenType("VALUE");
@@ -19,7 +21,10 @@ public interface JetTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == PROPERTY) {
+      if (type == IMPORT_STATEMENT) {
+        return new JetImportStatementImpl(node);
+      }
+      else if (type == PROPERTY) {
         return new JetPropertyImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);

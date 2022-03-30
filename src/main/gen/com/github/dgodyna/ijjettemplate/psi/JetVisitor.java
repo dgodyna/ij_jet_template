@@ -7,6 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public class JetVisitor extends PsiElementVisitor {
 
+  public void visitImportStatement(@NotNull JetImportStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitProperty(@NotNull JetProperty o) {
     visitPsiElement(o);
   }

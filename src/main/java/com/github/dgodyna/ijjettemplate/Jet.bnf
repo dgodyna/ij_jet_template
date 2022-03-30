@@ -15,6 +15,8 @@
 
 jetFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_ ::= (ImportStatement|property|COMMENT|CRLF)
 
 property ::= (KEY? SEPARATOR VALUE?) | KEY
+
+ImportStatement  ::= IMPORT VALUE

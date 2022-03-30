@@ -22,17 +22,20 @@ FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
 VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
 END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
 SEPARATOR=[:=]
+IMPORT=import
 KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
 
 %state WAITING_VALUE
 
 %%
+<YYINITIAL> {IMPORT}                                     { yybegin(WAITING_VALUE); return JetTypes.IMPORT; }
 
 <YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return JetTypes.COMMENT; }
 
 <YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return JetTypes.KEY; }
 
 <YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return JetTypes.SEPARATOR; }
+
 
 <WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
 

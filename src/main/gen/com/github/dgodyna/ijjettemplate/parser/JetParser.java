@@ -1,15 +1,33 @@
 // This is a generated file. Not intended for manual editing.
 package com.github.dgodyna.ijjettemplate.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import static com.github.dgodyna.ijjettemplate.psi.JetTypes.*;
-import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
+import com.intellij.psi.tree.IElementType;
+
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.COMMENT;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.CRLF;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.IMPORT;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.IMPORT_STATEMENT;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.KEY;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.PROPERTY;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.SEPARATOR;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.VALUE;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.TRUE_CONDITION;
+import static com.intellij.lang.parser.GeneratedParserUtilBase._COLLAPSE_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase._NONE_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.adapt_builder_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.consumeToken;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.consumeTokens;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.current_position_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.empty_element_parsed_guard_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.enter_section_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.exit_section_;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.nextTokenIs;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.recursion_guard_;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class JetParser implements PsiParser, LightPsiParser {
@@ -36,11 +54,24 @@ public class JetParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // property|COMMENT|CRLF
+  // IMPORT VALUE
+  public static boolean ImportStatement(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ImportStatement")) return false;
+    if (!nextTokenIs(b, IMPORT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, IMPORT, VALUE);
+    exit_section_(b, m, IMPORT_STATEMENT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ImportStatement|property|COMMENT|CRLF
   static boolean item_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "item_")) return false;
     boolean r;
-    r = property(b, l + 1);
+    r = ImportStatement(b, l + 1);
+    if (!r) r = property(b, l + 1);
     if (!r) r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, CRLF);
     return r;

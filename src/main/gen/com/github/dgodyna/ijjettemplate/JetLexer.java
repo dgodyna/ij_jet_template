@@ -56,7 +56,8 @@ class JetLexer implements FlexLexer {
   /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
     "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\7\1\10\1\0\1\10\26\0\1\11\2\0\1\11\36\0\1"+
-    "\6\50\0\1\1\242\0\2\1\26\0");
+    "\6\14\0\1\12\3\0\1\13\1\0\1\15\1\14\1\0\1\16\1\0\1\17\20\0\1\1\242\0\2\1\26"+
+    "\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -64,11 +65,12 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\2\1\1\2\1\3\1\4\1\5\2\6\2\7"+
-    "\1\3\1\7\1\0\2\4\1\0\1\2\2\6";
+    "\2\0\2\1\1\2\1\3\1\4\1\5\1\1\2\6"+
+    "\2\7\1\3\1\7\1\0\2\4\1\1\1\0\1\2"+
+    "\2\6\3\1\1\10";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[21];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -93,12 +95,13 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\12\0\24\0\36\0\50\0\62\0\74\0\106"+
-    "\0\120\0\132\0\50\0\144\0\156\0\170\0\62\0\202"+
-    "\0\214\0\156\0\132\0\226\0\240";
+    "\0\0\0\20\0\40\0\60\0\100\0\120\0\140\0\160"+
+    "\0\200\0\220\0\240\0\100\0\260\0\300\0\320\0\120"+
+    "\0\340\0\360\0\u0100\0\300\0\240\0\u0110\0\u0120\0\u0130"+
+    "\0\u0140\0\u0150\0\40";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[21];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -122,21 +125,28 @@ class JetLexer implements FlexLexer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\3\1\4\1\5\1\4\2\5\1\6\1\5\1\7"+
-    "\1\10\1\11\1\12\1\13\1\12\1\14\1\13\1\15"+
-    "\1\16\2\11\2\3\1\0\1\3\2\0\1\17\1\0"+
-    "\1\3\1\0\1\3\1\4\1\5\1\4\2\5\1\17"+
-    "\1\5\1\3\2\0\5\5\1\0\1\5\11\0\1\3"+
-    "\2\0\2\7\1\0\1\3\2\20\1\21\1\20\1\7"+
-    "\1\20\12\0\2\11\1\0\2\11\1\0\1\22\4\11"+
-    "\1\23\1\5\2\23\1\5\1\22\1\23\3\11\1\24"+
-    "\1\16\1\24\1\14\1\16\1\22\1\14\5\11\1\25"+
-    "\6\11\1\0\1\5\1\16\1\5\2\16\1\0\1\16"+
-    "\2\0\2\20\2\0\10\20\2\0\3\20\1\7\2\20"+
-    "\1\11\1\24\1\5\2\24\1\5\1\22\1\24\7\11"+
-    "\1\0\1\22\3\11";
+    "\1\10\1\11\5\3\1\12\1\13\1\14\1\13\1\15"+
+    "\1\14\1\16\1\17\10\12\2\3\1\0\1\3\2\0"+
+    "\1\20\1\0\1\3\1\0\7\3\1\4\1\5\1\4"+
+    "\2\5\1\20\1\5\1\3\1\0\6\3\1\0\5\5"+
+    "\1\0\1\5\17\0\1\3\10\0\2\7\1\0\1\3"+
+    "\2\21\1\22\1\21\1\7\1\21\6\7\20\0\2\3"+
+    "\1\0\1\3\2\0\1\20\1\0\1\3\1\0\1\3"+
+    "\1\23\4\3\2\12\1\0\2\12\1\0\1\24\12\12"+
+    "\1\25\1\5\2\25\1\5\1\24\1\25\11\12\1\26"+
+    "\1\17\1\26\1\15\1\17\1\24\1\15\13\12\1\27"+
+    "\14\12\1\0\1\5\1\17\1\5\2\17\1\0\1\17"+
+    "\10\0\2\21\2\0\16\21\2\0\3\21\1\7\10\21"+
+    "\2\3\1\0\1\3\2\0\1\20\1\0\1\3\1\0"+
+    "\2\3\1\30\3\3\1\12\1\26\1\5\2\26\1\5"+
+    "\1\24\1\26\15\12\1\0\1\24\11\12\2\3\1\0"+
+    "\1\3\2\0\1\20\1\0\1\3\1\0\3\3\1\31"+
+    "\4\3\1\0\1\3\2\0\1\20\1\0\1\3\1\0"+
+    "\4\3\1\32\3\3\1\0\1\3\2\0\1\20\1\0"+
+    "\1\3\1\0\5\3\1\33";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[170];
+    int [] result = new int[352];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -174,10 +184,10 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\5\1\1\11\6\1\1\0\2\1\1\0\3\1";
+    "\2\0\5\1\1\11\7\1\1\0\3\1\1\0\7\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[21];
+    int [] result = new int[27];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -494,37 +504,42 @@ class JetLexer implements FlexLexer {
             { yybegin(YYINITIAL); return JetTypes.KEY;
             } 
             // fall through
-          case 8: break;
+          case 9: break;
           case 2: 
             { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 9: break;
+          case 10: break;
           case 3: 
             { return TokenType.BAD_CHARACTER;
             } 
             // fall through
-          case 10: break;
+          case 11: break;
           case 4: 
             { yybegin(YYINITIAL); return JetTypes.COMMENT;
             } 
             // fall through
-          case 11: break;
+          case 12: break;
           case 5: 
             { yybegin(WAITING_VALUE); return JetTypes.SEPARATOR;
             } 
             // fall through
-          case 12: break;
+          case 13: break;
           case 6: 
             { yybegin(YYINITIAL); return JetTypes.VALUE;
             } 
             // fall through
-          case 13: break;
+          case 14: break;
           case 7: 
             { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
             } 
             // fall through
-          case 14: break;
+          case 15: break;
+          case 8: 
+            { yybegin(WAITING_VALUE); return JetTypes.IMPORT;
+            } 
+            // fall through
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }
