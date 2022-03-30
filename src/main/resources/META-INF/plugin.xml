@@ -7,17 +7,13 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.dgodyna.ijjettemplate.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.dgodyna.ijjettemplate.services.MyProjectService"/>
-        <fileType name="Monkey File"
-                  implementationClass="com.github.dgodyna.ijjettemplate.JetFileType"
-                  fieldName="INSTANCE"
-                  language="Jet Template"
-                  extensions="jet"/>
-    </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.dgodyna.ijjettemplate.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+        <fileType name="Jet File" implementationClass="com.github.dgodyna.ijjettemplate.JetFileType"
+                  fieldName="INSTANCE"
+                  language="Jet Template" extensions="jet"/>
+
+        <lang.parserDefinition language="Jet Template"
+                               implementationClass="com.github.dgodyna.ijjettemplate.JetParserDefinition"/>
+
+    </extensions>
 </idea-plugin>
