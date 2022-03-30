@@ -16,6 +16,16 @@ plugins {
     id("org.jetbrains.qodana") version "0.1.13"
 }
 
+// Include the generated files in the source set
+sourceSets {
+    main {
+        java {
+            srcDirs("src/main/gen")
+        }
+    }
+}
+
+
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 

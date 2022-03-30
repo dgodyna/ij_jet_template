@@ -1,0 +1,20 @@
+{
+  parserClass="com.github.dgodyna.ijjettemplate.parser.JetParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Jet"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.dgodyna.ijjettemplate.psi"
+  psiImplPackage="com.github.dgodyna.ijjettemplate.psi.impl"
+
+  elementTypeHolderClass="com.github.dgodyna.ijjettemplate.psi.JetTypes"
+  elementTypeClass="com.github.dgodyna.ijjettemplate.psi.JetElementType"
+  tokenTypeClass="com.github.dgodyna.ijjettemplate.psi.JetTokenType"
+}
+
+jetFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
