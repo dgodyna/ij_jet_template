@@ -22,5 +22,8 @@
                 language="Jet Template"
                 implementationClass="com.github.dgodyna.ijjettemplate.ide.highlighter.JetSyntaxHighlighterFactory"/>
 
+        <lang.commenter
+                language="Jet Template"
+                implementationClass="com.github.dgodyna.ijjettemplate.ide.commenter.JetCommenter"/>
     </extensions>
 </idea-plugin>
