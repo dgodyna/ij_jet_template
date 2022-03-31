@@ -1,7 +1,8 @@
 // Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 
-package com.github.dgodyna.ijjettemplate;
+package com.github.dgodyna.ijjettemplate.ide.highlighter;
 
+import com.github.dgodyna.ijjettemplate.JetLexerAdapter;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
 import com.intellij.openapi.editor.HighlighterColors;

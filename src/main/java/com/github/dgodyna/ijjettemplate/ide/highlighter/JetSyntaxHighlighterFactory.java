@@ -1,4 +1,4 @@
-package com.github.dgodyna.ijjettemplate;
+package com.github.dgodyna.ijjettemplate.ide.highlighter;
 
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;

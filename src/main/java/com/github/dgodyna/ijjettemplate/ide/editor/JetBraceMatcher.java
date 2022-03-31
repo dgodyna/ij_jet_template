@@ -1,4 +1,4 @@
-package com.github.dgodyna.ijjettemplate.ide;
+package com.github.dgodyna.ijjettemplate.ide.editor;
 
 import com.github.dgodyna.ijjettemplate.psi.JetTypes;
 import com.intellij.lang.BracePair;
