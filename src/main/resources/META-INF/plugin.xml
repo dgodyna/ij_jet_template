@@ -25,5 +25,10 @@
         <lang.commenter
                 language="Jet Template"
                 implementationClass="com.github.dgodyna.ijjettemplate.ide.commenter.JetCommenter"/>
+
+        <completion.contributor
+                language="Jet Template"
+                implementationClass="com.github.dgodyna.ijjettemplate.ide.completion.JetCompletionContributor"/>
+
     </extensions>
 </idea-plugin>

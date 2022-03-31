@@ -9,8 +9,9 @@ import com.github.dgodyna.ijjettemplate.psi.impl.*;
 public interface JetTypes {
 
   IElementType IMPORT_STATEMENT = new JetElementType("IMPORT_STATEMENT");
+  IElementType IMPORT_STRING = new JetElementType("IMPORT_STRING");
   IElementType STATEMENT_LIST = new JetElementType("STATEMENT_LIST");
-  IElementType STRING_EXPR = new JetElementType("STRING_EXPR");
+  IElementType STRING_LITERAL = new JetElementType("STRING_LITERAL");
 
   IElementType COMMENT = new JetTokenType("");
   IElementType IMPORT = new JetTokenType("import");
@@ -25,11 +26,14 @@ public interface JetTypes {
       if (type == IMPORT_STATEMENT) {
         return new JetImportStatementImpl(node);
       }
+      else if (type == IMPORT_STRING) {
+        return new JetImportStringImpl(node);
+      }
       else if (type == STATEMENT_LIST) {
         return new JetStatementListImpl(node);
       }
-      else if (type == STRING_EXPR) {
-        return new JetStringExprImpl(node);
+      else if (type == STRING_LITERAL) {
+        return new JetStringLiteralImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

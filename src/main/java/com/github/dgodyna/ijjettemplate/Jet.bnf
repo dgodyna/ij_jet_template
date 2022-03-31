@@ -12,6 +12,9 @@
   elementTypeClass="com.github.dgodyna.ijjettemplate.psi.JetElementType"
   tokenTypeClass="com.github.dgodyna.ijjettemplate.psi.JetTokenType"
 
+  psiImplUtilClass="com.github.dgodyna.ijjettemplate.psi.impl.JetPsiImplUtil"
+
+
   tokens = [
    COMMENT              =  ''
    LDOUBLE_BRACE        =  '{{'
@@ -26,5 +29,7 @@ File ::= StatementList
 StatementList    ::= ( TEXT+ |ImportStatement )*
 
 
-ImportStatement  ::= '{{' 'import' StringExpr '}}'
-StringExpr     ::= STRING
+StringLiteral ::= STRING
+
+ImportStatement  ::= '{{' 'import' ImportString '}}'
+ImportString ::= StringLiteral {methods=[getPath]}

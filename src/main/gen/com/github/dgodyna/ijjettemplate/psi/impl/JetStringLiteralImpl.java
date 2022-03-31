@@ -11,14 +11,14 @@ import static com.github.dgodyna.ijjettemplate.psi.JetTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.dgodyna.ijjettemplate.psi.*;
 
-public class JetStringExprImpl extends ASTWrapperPsiElement implements JetStringExpr {
+public class JetStringLiteralImpl extends ASTWrapperPsiElement implements JetStringLiteral {
 
-  public JetStringExprImpl(@NotNull ASTNode node) {
+  public JetStringLiteralImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull JetVisitor visitor) {
-    visitor.visitStringExpr(this);
+    visitor.visitStringLiteral(this);
   }
 
   @Override

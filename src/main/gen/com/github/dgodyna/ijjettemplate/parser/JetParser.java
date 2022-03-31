@@ -10,11 +10,12 @@ import com.intellij.psi.tree.IElementType;
 
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.IMPORT;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.IMPORT_STATEMENT;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.IMPORT_STRING;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.LDOUBLE_BRACE;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.RDOUBLE_BRACE;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.STATEMENT_LIST;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.STRING;
-import static com.github.dgodyna.ijjettemplate.psi.JetTypes.STRING_EXPR;
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.STRING_LITERAL;
 import static com.github.dgodyna.ijjettemplate.psi.JetTypes.TEXT;
 import static com.intellij.lang.parser.GeneratedParserUtilBase.TRUE_CONDITION;
 import static com.intellij.lang.parser.GeneratedParserUtilBase._COLLAPSE_;
@@ -60,16 +61,28 @@ public class JetParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '{{' 'import' StringExpr '}}'
+  // '{{' 'import' ImportString '}}'
   public static boolean ImportStatement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ImportStatement")) return false;
     if (!nextTokenIs(b, LDOUBLE_BRACE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, LDOUBLE_BRACE, IMPORT);
-    r = r && StringExpr(b, l + 1);
+    r = r && ImportString(b, l + 1);
     r = r && consumeToken(b, RDOUBLE_BRACE);
     exit_section_(b, m, IMPORT_STATEMENT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // StringLiteral
+  public static boolean ImportString(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ImportString")) return false;
+    if (!nextTokenIs(b, STRING)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = StringLiteral(b, l + 1);
+    exit_section_(b, m, IMPORT_STRING, r);
     return r;
   }
 
@@ -115,13 +128,13 @@ public class JetParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // STRING
-  public static boolean StringExpr(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "StringExpr")) return false;
+  public static boolean StringLiteral(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "StringLiteral")) return false;
     if (!nextTokenIs(b, STRING)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, STRING);
-    exit_section_(b, m, STRING_EXPR, r);
+    exit_section_(b, m, STRING_LITERAL, r);
     return r;
   }
 

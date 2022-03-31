@@ -17,8 +17,11 @@ import com.github.dgodyna.ijjettemplate.psi.JetFile;
 import com.github.dgodyna.ijjettemplate.psi.JetTypes;
 import org.jetbrains.annotations.NotNull;
 
+import static com.github.dgodyna.ijjettemplate.psi.JetTypes.STRING;
+
 public class JetParserDefinition implements ParserDefinition {
 
+    public static final TokenSet STRING_LITERALS = TokenSet.create(STRING);
     public static final TokenSet WHITE_SPACES = TokenSet.create(TokenType.WHITE_SPACE);
     public static final TokenSet COMMENTS = TokenSet.create(JetTypes.COMMENT);
 

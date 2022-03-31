@@ -5,6 +5,11 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface JetStringExpr extends PsiElement {
+public interface JetImportString extends PsiElement {
+
+  @NotNull
+  JetStringLiteral getStringLiteral();
+
+  String getPath();
 
 }

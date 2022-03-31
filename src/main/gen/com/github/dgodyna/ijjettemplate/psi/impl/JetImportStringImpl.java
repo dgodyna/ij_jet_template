@@ -11,14 +11,14 @@ import static com.github.dgodyna.ijjettemplate.psi.JetTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.dgodyna.ijjettemplate.psi.*;
 
-public class JetImportStatementImpl extends ASTWrapperPsiElement implements JetImportStatement {
+public class JetImportStringImpl extends ASTWrapperPsiElement implements JetImportString {
 
-  public JetImportStatementImpl(@NotNull ASTNode node) {
+  public JetImportStringImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull JetVisitor visitor) {
-    visitor.visitImportStatement(this);
+    visitor.visitImportString(this);
   }
 
   @Override
@@ -29,8 +29,13 @@ public class JetImportStatementImpl extends ASTWrapperPsiElement implements JetI
 
   @Override
   @NotNull
-  public JetImportString getImportString() {
-    return findNotNullChildByClass(JetImportString.class);
+  public JetStringLiteral getStringLiteral() {
+    return findNotNullChildByClass(JetStringLiteral.class);
+  }
+
+  @Override
+  public String getPath() {
+    return JetPsiImplUtil.getPath(this);
   }
 
 }
