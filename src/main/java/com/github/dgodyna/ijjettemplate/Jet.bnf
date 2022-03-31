@@ -11,12 +11,20 @@
   elementTypeHolderClass="com.github.dgodyna.ijjettemplate.psi.JetTypes"
   elementTypeClass="com.github.dgodyna.ijjettemplate.psi.JetElementType"
   tokenTypeClass="com.github.dgodyna.ijjettemplate.psi.JetTokenType"
+
+  tokens = [
+   COMMENT              =  ''
+   LDOUBLE_BRACE        =  '{{'
+   RDOUBLE_BRACE        =  '}}'
+   IMPORT               = 'import'
+  ]
 }
 
-jetFile ::= item_*
 
-private item_ ::= (ImportStatement|property|COMMENT|CRLF)
+File ::= StatementList
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+StatementList    ::= ( TEXT+ |ImportStatement )*
 
-ImportStatement  ::= IMPORT VALUE
+
+ImportStatement  ::= '{{' 'import' StringExpr '}}'
+StringExpr     ::= STRING

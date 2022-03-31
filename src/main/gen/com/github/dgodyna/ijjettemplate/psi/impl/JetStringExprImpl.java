@@ -11,26 +11,20 @@ import static com.github.dgodyna.ijjettemplate.psi.JetTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.dgodyna.ijjettemplate.psi.*;
 
-public class JetImportStatementImpl extends ASTWrapperPsiElement implements JetImportStatement {
+public class JetStringExprImpl extends ASTWrapperPsiElement implements JetStringExpr {
 
-  public JetImportStatementImpl(@NotNull ASTNode node) {
+  public JetStringExprImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull JetVisitor visitor) {
-    visitor.visitImportStatement(this);
+    visitor.visitStringExpr(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof JetVisitor) accept((JetVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public JetStringExpr getStringExpr() {
-    return findNotNullChildByClass(JetStringExpr.class);
   }
 
 }

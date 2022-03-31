@@ -16,33 +16,40 @@ import com.intellij.psi.TokenType;
 %eof{  return;
 %eof}
 
-CRLF=\R
-WHITE_SPACE=[\ \n\t\f]
-FIRST_VALUE_CHARACTER=[^ \n\f\\] | "\\"{CRLF} | "\\".
-VALUE_CHARACTER=[^\n\f\\] | "\\"{CRLF} | "\\".
-END_OF_LINE_COMMENT=("#"|"!")[^\r\n]*
-SEPARATOR=[:=]
-IMPORT=import
-KEY_CHARACTER=[^:=\ \n\t\f\\] | "\\ "
+TEXT = [^{]*
+COMMENT = \{\*(.)*\*\}
+LDOUBLE_BRACE = "{{"
+BRACE = "{"
+STR =      "\""
+ESCAPES = [abfnrtv]
 
-%state WAITING_VALUE
+EOL="\r"|"\n"|"\r\n"
+LINE_WS=[\ \t\f]
+WHITE_SPACE=({LINE_WS}|{EOL})+
 
+ANY_CHAR = (.|[\n])
+
+
+
+%state ST_ACTION
 %%
-<YYINITIAL> {IMPORT}                                     { yybegin(WAITING_VALUE); return JetTypes.IMPORT; }
+<YYINITIAL> {
+        {TEXT}                        { return JetTypes.TEXT; }
+        {COMMENT}                     { return JetTypes.COMMENT; }
+        {LDOUBLE_BRACE}               { yybegin(ST_ACTION);return JetTypes.LDOUBLE_BRACE; }
+        {BRACE}                       { return JetTypes.TEXT; }
+}
 
-<YYINITIAL> {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL); return JetTypes.COMMENT; }
+<ST_ACTION> {
+  {STR} ( [^\"\\\n\r] | "\\" ("\\" | {STR} | {ESCAPES} | [0-8xuU] ) )* {STR}? { return JetTypes.STRING; }
+  {WHITE_SPACE}         { return com.intellij.psi.TokenType.WHITE_SPACE; }
 
-<YYINITIAL> {KEY_CHARACTER}+                                { yybegin(YYINITIAL); return JetTypes.KEY; }
+  "{{"                  { return JetTypes.LDOUBLE_BRACE; }
+  "}}"                  { yybegin(YYINITIAL);return JetTypes.RDOUBLE_BRACE; }
+  "import"              { return JetTypes.IMPORT; }
 
-<YYINITIAL> {SEPARATOR}                                     { yybegin(WAITING_VALUE); return JetTypes.SEPARATOR; }
+}
 
-
-<WAITING_VALUE> {CRLF}({CRLF}|{WHITE_SPACE})+               { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
-
-<WAITING_VALUE> {WHITE_SPACE}+                              { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE; }
-
-<WAITING_VALUE> {FIRST_VALUE_CHARACTER}{VALUE_CHARACTER}*   { yybegin(YYINITIAL); return JetTypes.VALUE; }
-
-({CRLF}|{WHITE_SPACE})+                                     { yybegin(YYINITIAL); return TokenType.WHITE_SPACE; }
-
-[^]                                                         { return TokenType.BAD_CHARACTER; }
+<YYINITIAL,ST_ACTION> {
+   {ANY_CHAR} { return com.intellij.psi.TokenType.BAD_CHARACTER; }
+}

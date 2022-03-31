@@ -3,10 +3,9 @@
 // Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 package com.github.dgodyna.ijjettemplate;
 
+import com.github.dgodyna.ijjettemplate.psi.JetTypes;
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import com.github.dgodyna.ijjettemplate.psi.JetTypes;
-import com.intellij.psi.TokenType;
 
 
 /**
@@ -24,7 +23,7 @@ class JetLexer implements FlexLexer {
 
   /** lexical states */
   public static final int YYINITIAL = 0;
-  public static final int WAITING_VALUE = 2;
+  public static final int ST_ACTION = 2;
 
   /**
    * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
@@ -55,9 +54,9 @@ class JetLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 320 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\4\1\2\1\1\1\5\1\3\22\0\1\7\1\10\1\0\1\10\26\0\1\11\2\0\1\11\36\0\1"+
-    "\6\14\0\1\12\3\0\1\13\1\0\1\15\1\14\1\0\1\16\1\0\1\17\20\0\1\1\242\0\2\1\26"+
-    "\0");
+    "\11\0\1\11\1\3\1\4\1\5\1\3\22\0\1\11\1\0\1\7\7\0\1\2\5\0\11\10\34\0\1\10\6"+
+    "\0\1\12\4\0\2\10\3\0\1\10\2\0\1\13\3\0\1\14\1\10\1\16\1\15\1\0\1\17\1\0\1"+
+    "\20\2\10\1\0\1\10\2\0\1\1\1\0\1\6\7\0\1\4\242\0\2\4\26\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -65,12 +64,12 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\0\2\1\1\2\1\3\1\4\1\5\1\1\2\6"+
-    "\2\7\1\3\1\7\1\0\2\4\1\1\1\0\1\2"+
-    "\2\6\3\1\1\10";
+    "\1\1\1\0\2\1\2\2\1\3\1\2\1\4\1\2"+
+    "\1\5\1\0\1\6\1\7\1\4\4\0\1\10\2\0"+
+    "\1\11";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[27];
+    int [] result = new int[23];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -95,13 +94,12 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\20\0\40\0\60\0\100\0\120\0\140\0\160"+
-    "\0\200\0\220\0\240\0\100\0\260\0\300\0\320\0\120"+
-    "\0\340\0\360\0\u0100\0\300\0\240\0\u0110\0\u0120\0\u0130"+
-    "\0\u0140\0\u0150\0\40";
+    "\0\0\0\21\0\42\0\63\0\104\0\125\0\146\0\167"+
+    "\0\210\0\231\0\104\0\252\0\104\0\104\0\104\0\273"+
+    "\0\314\0\335\0\356\0\252\0\377\0\u0110\0\104";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[27];
+    int [] result = new int[23];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -124,29 +122,18 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\3\1\4\1\5\1\4\2\5\1\6\1\5\1\7"+
-    "\1\10\1\11\5\3\1\12\1\13\1\14\1\13\1\15"+
-    "\1\14\1\16\1\17\10\12\2\3\1\0\1\3\2\0"+
-    "\1\20\1\0\1\3\1\0\7\3\1\4\1\5\1\4"+
-    "\2\5\1\20\1\5\1\3\1\0\6\3\1\0\5\5"+
-    "\1\0\1\5\17\0\1\3\10\0\2\7\1\0\1\3"+
-    "\2\21\1\22\1\21\1\7\1\21\6\7\20\0\2\3"+
-    "\1\0\1\3\2\0\1\20\1\0\1\3\1\0\1\3"+
-    "\1\23\4\3\2\12\1\0\2\12\1\0\1\24\12\12"+
-    "\1\25\1\5\2\25\1\5\1\24\1\25\11\12\1\26"+
-    "\1\17\1\26\1\15\1\17\1\24\1\15\13\12\1\27"+
-    "\14\12\1\0\1\5\1\17\1\5\2\17\1\0\1\17"+
-    "\10\0\2\21\2\0\16\21\2\0\3\21\1\7\10\21"+
-    "\2\3\1\0\1\3\2\0\1\20\1\0\1\3\1\0"+
-    "\2\3\1\30\3\3\1\12\1\26\1\5\2\26\1\5"+
-    "\1\24\1\26\15\12\1\0\1\24\11\12\2\3\1\0"+
-    "\1\3\2\0\1\20\1\0\1\3\1\0\3\3\1\31"+
-    "\4\3\1\0\1\3\2\0\1\20\1\0\1\3\1\0"+
-    "\4\3\1\32\3\3\1\0\1\3\2\0\1\20\1\0"+
-    "\1\3\1\0\5\3\1\33";
+    "\1\3\1\4\17\3\1\5\1\6\1\5\1\7\1\0"+
+    "\1\7\1\10\1\11\1\5\1\7\1\5\1\12\5\5"+
+    "\1\3\1\0\17\3\1\0\1\13\1\14\40\0\1\15"+
+    "\22\0\1\7\1\0\1\7\3\0\1\7\15\0\1\16"+
+    "\12\0\3\11\1\0\3\11\1\17\2\11\1\20\6\11"+
+    "\14\0\1\21\4\0\2\14\1\22\3\0\13\14\7\0"+
+    "\2\11\1\0\1\11\4\0\2\11\15\0\1\23\3\0"+
+    "\2\14\1\22\3\0\1\24\12\14\16\0\1\25\21\0"+
+    "\1\26\21\0\1\27";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[352];
+    int [] result = new int[289];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -184,10 +171,11 @@ class JetLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\0\5\1\1\11\7\1\1\0\3\1\1\0\7\1";
+    "\1\1\1\0\2\1\1\11\5\1\1\11\1\0\3\11"+
+    "\4\0\1\1\2\0\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[27];
+    int [] result = new int[23];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -501,45 +489,50 @@ class JetLexer implements FlexLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { yybegin(YYINITIAL); return JetTypes.KEY;
-            } 
-            // fall through
-          case 9: break;
-          case 2: 
-            { yybegin(YYINITIAL); return TokenType.WHITE_SPACE;
+            { return JetTypes.TEXT;
             } 
             // fall through
           case 10: break;
-          case 3: 
-            { return TokenType.BAD_CHARACTER;
+          case 2: 
+            { return com.intellij.psi.TokenType.BAD_CHARACTER;
             } 
             // fall through
           case 11: break;
-          case 4: 
-            { yybegin(YYINITIAL); return JetTypes.COMMENT;
+          case 3: 
+            { return com.intellij.psi.TokenType.WHITE_SPACE;
             } 
             // fall through
           case 12: break;
-          case 5: 
-            { yybegin(WAITING_VALUE); return JetTypes.SEPARATOR;
+          case 4: 
+            { return JetTypes.STRING;
             } 
             // fall through
           case 13: break;
-          case 6: 
-            { yybegin(YYINITIAL); return JetTypes.VALUE;
+          case 5: 
+            { yybegin(ST_ACTION);return JetTypes.LDOUBLE_BRACE;
             } 
             // fall through
           case 14: break;
-          case 7: 
-            { yybegin(WAITING_VALUE); return TokenType.WHITE_SPACE;
+          case 6: 
+            { return JetTypes.LDOUBLE_BRACE;
             } 
             // fall through
           case 15: break;
-          case 8: 
-            { yybegin(WAITING_VALUE); return JetTypes.IMPORT;
+          case 7: 
+            { yybegin(YYINITIAL);return JetTypes.RDOUBLE_BRACE;
             } 
             // fall through
           case 16: break;
+          case 8: 
+            { return JetTypes.COMMENT;
+            } 
+            // fall through
+          case 17: break;
+          case 9: 
+            { return JetTypes.IMPORT;
+            } 
+            // fall through
+          case 18: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

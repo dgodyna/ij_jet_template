@@ -11,7 +11,11 @@ public class JetVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitProperty(@NotNull JetProperty o) {
+  public void visitStatementList(@NotNull JetStatementList o) {
+    visitPsiElement(o);
+  }
+
+  public void visitStringExpr(@NotNull JetStringExpr o) {
     visitPsiElement(o);
   }
 

@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface JetImport extends PsiElement {
+public interface JetStatementList extends PsiElement {
+
+  @NotNull
+  List<JetImportStatement> getImportStatementList();
 
 }
